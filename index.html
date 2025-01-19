@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Stock-In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Inventory Stock-In</h1>
+  <!-- Navigation Bar -->
+<nav class="navbar">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="add-product.html" class="nav-link">Add New Product</a>
+</nav>
+
+  <form id="stockInForm">
+    <!-- Recorded By -->
+    <label for="recordedBy">Recorded By</label>
+    <select id="recordedBy" name="recordedBy" required>
+      <option value="" disabled selected>Select Employee</option>
+      <option value="Alice">Alice</option>
+      <option value="Bob">Bob</option>
+      <option value="Charlie">Charlie</option>
+    </select>
+
+    <!-- Entry Date -->
+    <label for="entryDate">Entry Date</label>
+    <input type="date" id="entryDate" name="entryDate" required>
+
+    <!-- Product Category -->
+    <label for="productCategory">Product Category</label>
+    <select id="productCategory" name="productCategory" required>
+      <option value="" disabled selected>Select Category</option>
+      <option value="Cleaning & Toiletries">Cleaning & Toiletries</option>
+      <option value="Stationeries">Stationeries</option>
+      <option value="Printed Materials - Free Class">Printed Materials - Free Class</option>
+      <option value="Paid Batch Goodies">Paid Batch Goodies</option>
+      <option value="Kitchen Supplies">Kitchen Supplies</option>
+      <option value="Tech & Electronics Accessories">Tech & Electronics Accessories</option>
+      <option value="Health & Safety Supplies">Health & Safety Supplies</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <!-- Products Section -->
+    <div id="productEntries">
+      <h3>Product Details</h3>
+      <div class="productRow">
+        <!-- Product Name -->
+        <label for="productName">Product</label>
+        <select class="productName" name="productName[]" required>
+          <option value="" disabled selected>Select a Product</option>
+        </select>
+
+        <!-- Brand Name (Optional) -->
+        <label for="brandName">Brand Name <span class="optional">(Optional)</span></label>
+        <input type="text" class="brandName" name="brandName[]">
+
+        <!-- Unit Type -->
+        <label for="unitType">Unit Type</label>
+        <select class="unitType" name="unitType[]" required>
+          <option value="" disabled selected>Select Unit Type</option>
+          <option value="Pieces">Pieces</option>
+          <option value="Dozen">Dozen</option>
+          <option value="Ream">Ream</option>
+          <option value="Boxes">Boxes</option>
+          <option value="Kilograms">Kilograms (kg)</option>
+          <option value="Grams">Grams (g)</option>
+          <option value="Milligrams">Milligrams (mg)</option>
+          <option value="Milliliters">Milliliters (mL)</option>
+          <option value="Liters">Liters (L)</option>
+          <option value="Packs">Packs</option>
+          <option value="Pairs">Pairs</option>
+          <option value="Units">Units</option>
+          <option value="Pages">Pages</option>
+        </select>
+
+        <!-- Quantity -->
+        <label for="quantity">Quantity</label>
+        <input type="number" class="quantity" name="quantity[]" min="1" required>
+
+        <!-- Location -->
+        <label for="location">Location</label>
+        <select class="location" name="location[]" required>
+          <option value="" disabled selected>Select Location</option>
+          <option value="Office Room">Office Room</option>
+          <option value="Pantry">Pantry</option>
+          <option value="Inventory Room">Inventory Room</option>
+          <option value="Front Desk">Front Desk</option>
+          <option value="Store Room - 1">Store Room - 1</option>
+          <option value="Store Room - 2">Store Room - 2</option>
+        </select>
+
+        <!-- Remarks (Optional) -->
+        <label for="remarks">Remarks <span class="optional">(Optional)</span></label>
+        <textarea class="remarks" name="remarks[]" placeholder="Enter remarks (optional)"></textarea>
+
+        <!-- Remove Product Button -->
+        <button type="button" class="removeProduct">Remove</button>
+      </div>
+    </div>
+
+    <!-- Add Another Product Button -->
+    <button type="button" id="addProduct">Add Another Product</button>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Load products from local storage
+    const loadProductData = () => {
+      return JSON.parse(localStorage.getItem("products")) || {};
+    };
+  
+    // Populate product dropdown based on selected category
+    const populateProducts = (category) => {
+      const productDropdowns = document.querySelectorAll(".productName");
+      const products = loadProductData();
+      const productOptions = products[category] || [];
+  
+      productDropdowns.forEach((dropdown) => {
+        dropdown.innerHTML = '<option value="" disabled selected>Select a Product</option>';
+        productOptions.forEach((product) => {
+          const option = document.createElement("option");
+          option.value = product;
+          option.textContent = product;
+          dropdown.appendChild(option);
+        });
+      });
+    };
+  
+    // Listen for category change and update product dropdown
+    document.getElementById("productCategory").addEventListener("change", function () {
+      const category = this.value;
+      if (category) {
+        populateProducts(category);
+      }
+    });
+  
+    // Load products when page loads
+    window.onload = () => {
+      const category = document.getElementById("productCategory").value;
+      if (category) {
+        populateProducts(category);
+      }
+    };
+  </script>
+  
+  
+  
+  
+</body>
+</html>

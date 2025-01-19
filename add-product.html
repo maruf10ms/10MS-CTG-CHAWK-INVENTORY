@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Products</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+/* Navbar styles */
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: center; /* Center the links */
+  background-color: #2d87f0; /* Consistent color with form buttons */
+  padding: 10px; /* Smaller padding */
+  border-radius: 8px; /* Rounded corners */
+  width: 100%; /* Full width */
+  max-width: 600px; /* Match the form's max width */
+  margin: 20px auto 20px; /* Center the navbar, add top and bottom spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px; /* Slightly smaller text size */
+  font-weight: bold;
+  margin: 0 15px; /* Equal spacing between links */
+}
+
+.nav-link:hover {
+  color: #ffcc00; /* Highlight color on hover */
+  text-decoration: underline;
+}
+
+
+    /* Heading styles */
+    h1 {
+      font-size: 32px;
+      color: #2f4f4f;
+      margin-top: 20px;
+    }
+
+    /* Add Product & Remove Product Section Headers */
+    h2 {
+      font-size: 24px;
+      color: #2f4f4f;
+      margin-top: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* Form styling */
+    form {
+      background-color: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+    }
+
+    /* Form input and select fields */
+    label {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* Add Product Button Styling */
+    #addProductButton {
+      background-color: #28a745;  /* Smart Green */
+      color: white;
+      font-weight: bold;
+    }
+
+    #addProductButton:hover {
+      background-color: #218838;  /* Darker Green */
+    }
+
+    /* Remove Product Button Styling */
+    #removeProductButton {
+      background-color: #dc3545;  /* Smart Red */
+      color: white;
+      font-weight: bold;
+    }
+
+    #removeProductButton:hover {
+      background-color: #c82333;  /* Darker Red */
+    }
+
+    /* Center content and add margin */
+    .container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      form {
+        width: 95%;
+      }
+
+      button {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Add Product Form -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="add-product.html" class="nav-link">Add New Product</a>
+  </nav>
+  
+
+  <h1>Manage Products</h1>
+
+  <h2>Add Products</h2>
+
+  <!-- Add New Product Form -->
+  <form id="addProductForm">
+    <label for="newProductCategory">Product Category</label>
+    <select id="newProductCategory" required>
+      <option value="" disabled selected>Select Category</option>
+      <option value="Cleaning & Toiletries">Cleaning & Toiletries</option>
+      <option value="Stationeries">Stationeries</option>
+      <option value="Printed Materials - Free Class">Printed Materials - Free Class</option>
+      <option value="Paid Batch Goodies">Paid Batch Goodies</option>
+      <option value="Kitchen Supplies">Kitchen Supplies</option>
+      <option value="Tech & Electronics Accessories">Tech & Electronics Accessories</option>
+      <option value="Health & Safety Supplies">Health & Safety Supplies</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <label for="newProductName">Product Name</label>
+    <input type="text" id="newProductName" placeholder="Enter Product Name" required>
+
+    <button type="button" id="addProductButton">Add Product</button>
+  </form>
+
+  <!-- Remove Product Section -->
+  <h2>Remove Product</h2>
+  <form id="removeProductForm">
+    <label for="removeProductCategory">Product Category</label>
+    <select id="removeProductCategory" required>
+      <option value="" disabled selected>Select Category</option>
+      <option value="Cleaning & Toiletries">Cleaning & Toiletries</option>
+      <option value="Stationeries">Stationeries</option>
+      <option value="Printed Materials - Free Class">Printed Materials - Free Class</option>
+      <option value="Paid Batch Goodies">Paid Batch Goodies</option>
+      <option value="Kitchen Supplies">Kitchen Supplies</option>
+      <option value="Tech & Electronics Accessories">Tech & Electronics Accessories</option>
+      <option value="Health & Safety Supplies">Health & Safety Supplies</option>
+      <option value="Others">Others</option>
+    </select>
+
+    <label for="removeProductName">Product Name</label>
+    <select id="removeProductName" required>
+      <option value="" disabled selected>Select Product</option>
+    </select>
+
+    <button type="button" id="removeProductButton">Remove Product</button>
+  </form>
+
+  <script>
+    // Load and save products to localStorage
+    const loadProductData = () => {
+      return JSON.parse(localStorage.getItem("products")) || {};
+    };
+
+    const saveProductData = (products) => {
+      localStorage.setItem("products", JSON.stringify(products));
+    };
+
+    // Add product to localStorage when the button is clicked
+    document.getElementById("addProductButton").addEventListener("click", function() {
+      const category = document.getElementById("newProductCategory").value;
+      const productName = document.getElementById("newProductName").value.trim();
+
+      if (!category || !productName) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const products = loadProductData();
+      if (!products[category]) {
+        products[category] = [];
+      }
+
+      // Check if the product already exists
+      if (!products[category].includes(productName)) {
+        products[category].push(productName);
+        saveProductData(products);
+        alert(`Product "${productName}" added successfully under "${category}".`);
+        document.getElementById("newProductName").value = ""; // Clear the input field
+      } else {
+        alert(`Product "${productName}" already exists in the "${category}" category.`);
+      }
+    });
+
+    // Populate product dropdown based on selected category for removal
+    document.getElementById("removeProductCategory").addEventListener("change", function() {
+      const category = this.value;
+      const products = loadProductData();
+      const productDropdown = document.getElementById("removeProductName");
+
+      if (category) {
+        const productOptions = products[category] || [];
+        productDropdown.innerHTML = '<option value="" disabled selected>Select Product</option>';
+        productOptions.forEach((product) => {
+          const option = document.createElement("option");
+          option.value = product;
+          option.textContent = product;
+          productDropdown.appendChild(option);
+        });
+      }
+    });
+
+    // Remove product from localStorage when the button is clicked
+    document.getElementById("removeProductButton").addEventListener("click", function() {
+      const category = document.getElementById("removeProductCategory").value;
+      const productName = document.getElementById("removeProductName").value;
+
+      if (!category || !productName) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const products = loadProductData();
+      if (products[category] && products[category].includes(productName)) {
+        // Remove the selected product from the array
+        products[category] = products[category].filter(product => product !== productName);
+        saveProductData(products);
+        alert(`Product "${productName}" removed successfully from "${category}".`);
+      } else {
+        alert("Product not found.");
+      }
+    });
+  </script>
+</body>
+</html>
