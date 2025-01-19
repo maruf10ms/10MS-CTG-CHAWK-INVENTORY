@@ -145,6 +145,29 @@
         populateProducts(category);
       }
     };
+    // Add Another Product Button functionality
+document.getElementById("addProduct").addEventListener("click", function () {
+  // Clone the first product row (the original product entry form)
+  const productRow = document.querySelector(".productRow");
+  const newProductRow = productRow.cloneNode(true);
+
+  // Clear the values in the new cloned row (to avoid duplicates)
+  const inputs = newProductRow.querySelectorAll("input, select, textarea");
+  inputs.forEach(input => input.value = "");
+
+  // Append the new row to the productEntries div
+  document.getElementById("productEntries").appendChild(newProductRow);
+});
+
+// Remove Product Button functionality
+document.getElementById("productEntries").addEventListener("click", function (e) {
+  if (e.target && e.target.classList.contains("removeProduct")) {
+    // Remove the parent row of the clicked "Remove" button
+    const productRow = e.target.closest(".productRow");
+    productRow.remove();
+  }
+});
+
   </script>
   
   
